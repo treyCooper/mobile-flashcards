@@ -4,7 +4,7 @@ import { fetchDecks  } from '../utils/api'
 
 export default class DeckList extends Component {
   state = {
-    decks: []
+    decks: {}
   }
   componentDidMount() {
     fetchDecks()
@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: 40,
-    width: 375,
     borderBottomWidth: 1
   },
 });
