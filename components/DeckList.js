@@ -1,45 +1,28 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { fetchDecks  } from '../utils/api'
 
 export default class DeckList extends Component {
   state = {
-    decks: [
-      {
-        title: 'React',
-        questions: [
-          {
-            question: 'What is React?',
-            answer: 'A library for managing user interfaces'
-          },
-          {
-            question: 'Where do you make Ajax requests in React?',
-            answer: 'The componentDidMount lifecycle event'
-          }
-        ]
-      },
-      {
-        title: 'JavaScript',
-        questions: [
-          {
-            question: 'What is a closure?',
-            answer: 'The combination of a function and the lexical environment within which that function was declared.'
-          }
-        ]
-      }
-    ]
+    decks: []
+  }
+  componentDidMount() {
+    fetchDecks()
+  .then((results) => this.setState(() => ({decks: results})))
   }
 
   render () {
+    console.log('state2', this.state)
     const { decks } = this.state;
     return (
-      decks.map((deck) => {
+      Object.keys(decks).map((deck) => {
         return (
-        <View style={styles.container} key={deck.title}>
+        <View style={styles.container} key={decks[deck].title}>
           <Text>
-            {deck.title}
+          {decks[deck].title}
           </Text>
           <Text>
-            {`${deck.questions.length} ${deck.questions.length === 1 ? 'card' : 'cards'}`}
+            {`${decks[deck].questions.length} ${decks[deck].questions.length === 1 ? 'card' : 'cards'}`}
           </Text>
         </View>)
         // return <SingleDeck deck={}/>
