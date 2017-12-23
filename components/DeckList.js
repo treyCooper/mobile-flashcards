@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default class DeckView extends Component {
+export default class DeckList extends Component {
   state = {
     decks: [
       {
@@ -34,7 +34,14 @@ export default class DeckView extends Component {
     return (
       decks.map((deck) => {
         return (
-        <View style={styles.container} key={deck.title}><Text>{deck.title}</Text></View>)
+        <View style={styles.container} key={deck.title}>
+          <Text>
+            {deck.title}
+          </Text>
+          <Text>
+            {`${deck.questions.length} ${deck.questions.length === 1 ? 'card' : 'cards'}`}
+          </Text>
+        </View>)
         // return <SingleDeck deck={}/>
       })
     )
@@ -49,7 +56,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: 40,
-    width: 1000,
+    width: 375,
     borderBottomWidth: 1
   },
 });

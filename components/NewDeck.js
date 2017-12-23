@@ -3,14 +3,14 @@ import { StyleSheet, Text, View } from 'react-native';
 
 export default class NewDeck extends Component {
   state = {
-    title: ''
+    title: 'What is the title of your new deck?'
   }
 
   render() {
     return (
       <View>
         <Text>
-          What is the title of your new deck?
+          {this.state.title}
         </Text>
       </View>
     )
