@@ -4,6 +4,7 @@ import DeckList from './components/DeckList';
 import NewDeck from './components/NewDeck';
 import SingleDeck from './components/SingleDeck';
 import AddCard from './components/AddCard';
+import Quiz from './components/Quiz';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { Constants } from 'expo';
@@ -65,7 +66,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <AddCard />
+        <Quiz />
       </View>
     );
   }
