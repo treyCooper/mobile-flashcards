@@ -6,9 +6,10 @@ export function fetchDecks () {
     .then(formatDeckResults)
 }
 
-export function getDeck () {
+export function getDeck (deck) {
   return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
     .then(formatDeckResults)
+    .then(results => results[deck])
 }
 
 export function saveDeckTitle ({ title, key }) {

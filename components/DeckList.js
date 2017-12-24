@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { fetchDecks  } from '../utils/api'
+import { fetchDecks  } from '../utils/api';
 
 export default class DeckList extends Component {
   state = {

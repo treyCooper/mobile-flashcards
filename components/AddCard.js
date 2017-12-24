@@ -5,7 +5,8 @@ import TextButton from './TextButton';
 export default class NewDeck extends Component {
   state = {
     title: 'What is the title of your new deck?',
-    text: ''
+    question: '',
+    answer: ''
 }
 
 
@@ -13,20 +14,30 @@ export default class NewDeck extends Component {
     return (
       <View style={styles.container}>
         <Text>
-          {this.state.title}
+          Question
         </Text>
         <View>
         <TextInput
           style={{height: 40, width: 300, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(text) => this.setState({text})}
-          value={this.state.text}
-          placeholder={'Placeholder Title'}
+          onChangeText={(question) => this.setState({question})}
+          value={this.state.question}
+          placeholder={'Question'}
         />
-        <TextButton style={{padding: 10}} onPress={this.reset}>
-            Add Deck
-          </TextButton>
         </View>
-
+        <Text>
+          Answer
+        </Text>
+        <View>
+        <TextInput
+          style={{height: 40, width: 300, borderColor: 'gray', borderWidth: 1}}
+          onChangeText={(answer) => this.setState({answer})}
+          value={this.state.answer}
+          placeholder={'Answer'}
+        />
+        </View>
+        <TextButton style={{padding: 10}} onPress={this.reset}>
+            Add Card
+          </TextButton>
       </View>
     )
   }

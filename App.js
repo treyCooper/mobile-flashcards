@@ -2,7 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View, Platform } from 'react-native';
 import DeckList from './components/DeckList';
 import NewDeck from './components/NewDeck';
-import SingleDeck from './components/SingleDeck'
+import SingleDeck from './components/SingleDeck';
+import AddCard from './components/AddCard';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { Constants } from 'expo';
@@ -64,7 +65,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <MainNavigator />
+        <AddCard />
       </View>
     );
   }
