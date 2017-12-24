@@ -13,7 +13,9 @@ export default class Quiz extends Component {
         }
       ]
     },
-    showAnswer: false
+    showAnswer: false,
+    cardNum: 0,
+    quizOver: false
   }
 
   componentDidMount() {
@@ -23,22 +25,39 @@ export default class Quiz extends Component {
 
   flipCard = (showAnswer) => this.setState(() => ({showAnswer: !showAnswer}))
 
+  nextCard = (cardNum, deck) => {
+    cardNum++;
+   if (cardNum < deck.questions.length){
+      this.setState(() => ({ cardNum: cardNum }) )
+   } else {
+    this.setState(() => ({ quizOver: true }) )
+     }
+  }
   render () {
-    const { deck, showAnswer } = this.state;
-    return (
+    const { deck, showAnswer, cardNum, quizOver } = this.state;
+    console.log(cardNum)
+    return !quizOver ?
+    (
       <View style={styles.container}>
       <Text>
-        {showAnswer ? deck.questions[0].answer : deck.questions[0].question}
+        {showAnswer ? deck.questions[cardNum].answer : deck.questions[cardNum].question}
       </Text>
       <TextButton style={{padding: 10}} onPress={() => this.flipCard(showAnswer)}>
             {!showAnswer ? 'Answer' : 'Question'}
       </TextButton>
-      <TextButton style={{padding: 10}} onPress={this.addLater}>
+      <TextButton style={{padding: 10}} onPress={() => this.nextCard(cardNum, deck)}>
             Correct
       </TextButton>
-      <TextButton style={{padding: 10}} onPress={this.addLater}>
+      <TextButton style={{padding: 10}} onPress={() => this.nextCard(cardNum, deck)}>
             Incorrect
       </TextButton>
+      </View>
+    )
+    :  (
+      <View style={styles.container}>
+      <Text>
+        Quiz is Over
+      </Text>
       </View>
     )
   }
