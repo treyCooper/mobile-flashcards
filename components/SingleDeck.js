@@ -15,6 +15,10 @@ export default class SingleDeck extends Component {
     getDeck("React")
   .then((results) => this.setState(() => ({deck: results})))
   }
+  goToQuiz = (name) => {
+    const { navigate } = this.props.navigation;
+    return navigate('Quiz', { name })
+  }
 
   render () {
     const { deck } = this.state;
@@ -29,7 +33,7 @@ export default class SingleDeck extends Component {
       <TextButton style={{padding: 10}} onPress={this.addLater}>
             Add Card
       </TextButton>
-      <TextButton style={{padding: 10}} onPress={this.addLater}>
+      <TextButton style={{padding: 10}} onPress={() => this.goToQuiz(deck.title)}>
             Start Quiz
       </TextButton>
       </View>

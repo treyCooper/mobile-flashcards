@@ -19,9 +19,9 @@ export default class DeckList extends Component {
 
   goToDeck = (name) => {
     const { navigate } = this.props.navigation;
-    console.log("ggalkjf")
     return navigate('SingleDeck', { name })
   }
+
   render () {
     const { decks } = this.state;
     return (

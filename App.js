@@ -57,6 +57,15 @@ const MainNavigator = StackNavigator({
         backgroundColor: purple,
       }
     }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    }
   }
 })
 
