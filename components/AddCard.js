@@ -11,6 +11,7 @@ export default class NewDeck extends Component {
 
 
   render() {
+    console.log(this.props.navigation.state.params.name)
     return (
       <View style={styles.container}>
         <Text>
@@ -47,6 +48,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    paddingTop: 100
   },
 });
