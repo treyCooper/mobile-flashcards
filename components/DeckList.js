@@ -1,31 +1,44 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { fetchDecks  } from '../utils/api';
-
+import { NavigationActions } from 'react-navigation'
+import SingleDeck from './SingleDeck';
 export default class DeckList extends Component {
   state = {
     decks: {}
   }
+
+  static navigationOptions = {
+    title: 'Deck List',
+  };
+
   componentDidMount() {
     fetchDecks()
   .then((results) => this.setState(() => ({decks: results})))
   }
 
+  goToDeck = (name) => {
+    const { navigate } = this.props.navigation;
+    console.log("ggalkjf")
+    return navigate('SingleDeck', { name })
+  }
   render () {
-    console.log('state2', this.state)
     const { decks } = this.state;
     return (
       Object.keys(decks).map((deck) => {
         return (
-        <View style={styles.container} key={decks[deck].title}>
-          <Text>
-          {decks[deck].title}
-          </Text>
-          <Text>
-            {`${decks[deck].questions.length} ${decks[deck].questions.length === 1 ? 'card' : 'cards'}`}
-          </Text>
+          <View style={styles.container} key={decks[deck].title}>
+          <TouchableOpacity onPress={() => this.goToDeck(decks[deck].title)}>
+          <View style={styles.container}>
+            <Text>
+            {decks[deck].title}
+            </Text>
+            <Text>
+              {`${decks[deck].questions.length} ${decks[deck].questions.length === 1 ? 'card' : 'cards'}`}
+            </Text>
+        </View>
+        </ TouchableOpacity>
         </View>)
-        // return <SingleDeck deck={}/>
       })
     )
   }
@@ -39,6 +52,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: 40,
-    borderBottomWidth: 1
+    width: 375,
+    borderBottomWidth: 0.5
   },
 });

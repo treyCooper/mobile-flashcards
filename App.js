@@ -49,8 +49,8 @@ const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs,
   },
-  NewDeck: {
-    screen: NewDeck,
+  SingleDeck: {
+    screen: SingleDeck,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
@@ -66,7 +66,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Quiz />
+        <MainNavigator />
       </View>
     );
   }

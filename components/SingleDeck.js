@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { getDeck  } from '../utils/api';
 import TextButton from './TextButton';
+import { NavigationActions } from 'react-navigation';
 
 export default class SingleDeck extends Component {
   state = {
     deck: {questions: []}
   }
-
+  static navigationOptions = ({navigation}) => ({
+    title: navigation.state.params.name,
+  });
   componentDidMount() {
     getDeck("React")
   .then((results) => this.setState(() => ({deck: results})))
