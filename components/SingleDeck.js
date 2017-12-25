@@ -12,8 +12,9 @@ export default class SingleDeck extends Component {
     title: navigation.state.params.name,
   });
   componentDidMount() {
-    getDeck("React")
+    getDeck(this.props.navigation.state.params.name)
   .then((results) => this.setState(() => ({deck: results})))
+
   }
   goToQuiz = (name) => {
     const { navigate } = this.props.navigation;
