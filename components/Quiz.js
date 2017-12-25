@@ -35,7 +35,6 @@ export default class Quiz extends Component {
   }
   render () {
     const { deck, showAnswer, cardNum, quizOver } = this.state;
-    console.log(cardNum)
     return !quizOver ?
     (
       <View style={{flex: 1}}>

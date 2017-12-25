@@ -20,6 +20,11 @@ export default class SingleDeck extends Component {
     return navigate('Quiz', { name })
   }
 
+  addCard = (name) => {
+    const { navigate } = this.props.navigation;
+    return navigate('AddCard', { name })
+  }
+
   render () {
     const { deck } = this.state;
     return (
@@ -30,7 +35,7 @@ export default class SingleDeck extends Component {
       <Text>
         {`${deck.questions.length} ${deck.questions.length === 1 ? 'card' : 'cards'}`}
       </Text>
-      <TextButton style={{padding: 10}} onPress={this.addLater}>
+      <TextButton style={{padding: 10}} onPress={() => this.addCard(deck.title)}>
             Add Card
       </TextButton>
       <TextButton style={{padding: 10}} onPress={() => this.goToQuiz(deck.title)}>

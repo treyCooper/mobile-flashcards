@@ -66,6 +66,15 @@ const MainNavigator = StackNavigator({
         backgroundColor: purple,
       }
     }
+  },
+  AddCard: {
+    screen: AddCard,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    }
   }
 })
 
