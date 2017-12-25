@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Platform } from 'react-native';
+import { StyleSheet, Text, View, Platform, StatusBar } from 'react-native';
 import DeckList from './components/DeckList';
 import NewDeck from './components/NewDeck';
 import SingleDeck from './components/SingleDeck';
@@ -12,6 +12,14 @@ import { Constants } from 'expo';
 const purple = '#292477'
 const gray = '#757575'
 const white = '#fff'
+
+function UdaciStatusBar ({ backgroundColor, ...props }) {
+  return (
+    <View style={{backgroundColor, height: Constants.statusBarHeight}}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props}/>
+    </View>
+  )
+}
 
 const Tabs = TabNavigator({
   DeckList: {
@@ -84,6 +92,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <UdaciStatusBar backgroundColor={gray} barStyle='light-content' />
         <MainNavigator />
       </View>
     );
