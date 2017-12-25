@@ -4,16 +4,18 @@ import TextButton from './TextButton';
 
 export default class NewDeck extends Component {
   state = {
-    title: 'What is the title of your new deck?',
     text: ''
 }
 
+addDeck = (title) => ({
+
+})
 
   render() {
     return (
       <View style={styles.container}>
         <Text>
-          {this.state.title}
+        What is the title of your new deck?
         </Text>
         <View>
         <TextInput
@@ -22,7 +24,7 @@ export default class NewDeck extends Component {
           value={this.state.text}
           placeholder={'Placeholder Title'}
         />
-        <TextButton style={{padding: 10}} onPress={this.reset}>
+        <TextButton style={{padding: 10}} onPress={this.addDeck}>
             Add Deck
           </TextButton>
         </View>

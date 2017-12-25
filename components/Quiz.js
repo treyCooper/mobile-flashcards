@@ -16,11 +16,12 @@ export default class Quiz extends Component {
     },
     showAnswer: false,
     cardNum: 0,
-    quizOver: false
+    quizOver: false,
+    count: 0
   }
 
   componentDidMount() {
-    getDeck("React")
+    getDeck(this.props.navigation.state.params.name)
   .then((results) => this.setState(() => ({deck: results})))
   }
 
@@ -41,6 +42,10 @@ export default class Quiz extends Component {
     // this.props.navigation.dispatch(NavigationActions.back({
     //   key: 'DeckList'
     // }))
+  }
+
+  restartQuiz = () => {
+    this.setState(() => ({ cardNum: 0, count: 0, quizOver: false }))
   }
 
   render () {
@@ -71,6 +76,9 @@ export default class Quiz extends Component {
         <View style={styles.container}>
           <TextButton style={{padding: 10}} onPress={() => this.backToHome(deck.title)}>
             Return to Deck List
+          </TextButton>
+          <TextButton style={{padding: 10}} onPress={() => this.restartQuiz()}>
+            Restart Quiz
           </TextButton>
         </View>
 
