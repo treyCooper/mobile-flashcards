@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { getDeck  } from '../utils/api';
 import TextButton from './TextButton';
+import { NavigationActions } from 'react-navigation';
 
 export default class Quiz extends Component {
   state = {
@@ -33,6 +34,15 @@ export default class Quiz extends Component {
     this.setState(() => ({ quizOver: true }) )
      }
   }
+
+  backToHome = (name) => {
+    const { navigate } = this.props.navigation;
+    return navigate('Home')
+    // this.props.navigation.dispatch(NavigationActions.back({
+    //   key: 'DeckList'
+    // }))
+  }
+
   render () {
     const { deck, showAnswer, cardNum, quizOver } = this.state;
     return !quizOver ?
@@ -59,9 +69,9 @@ export default class Quiz extends Component {
       )
       :  (
         <View style={styles.container}>
-          <Text>
-            Quiz is Over
-          </Text>
+          <TextButton style={{padding: 10}} onPress={() => this.backToHome(deck.title)}>
+            Return to Deck List
+          </TextButton>
         </View>
 
     )
