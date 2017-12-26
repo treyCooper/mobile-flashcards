@@ -48,8 +48,12 @@ export default class Quiz extends Component {
     this.setState(() => ({ cardNum: 0, count: 0, quizOver: false }))
   }
 
+  incrementCount = (cardNum, deck) => {
+    this.setState(() => ({ count: this.state.count + 1 }))
+    this.nextCard(cardNum, deck)
+  }
   render () {
-    const { deck, showAnswer, cardNum, quizOver } = this.state;
+    const { deck, showAnswer, cardNum, quizOver, count } = this.state;
     return !quizOver ?
     (
       <View style={{flex: 1}}>
@@ -63,7 +67,7 @@ export default class Quiz extends Component {
           <TextButton style={{padding: 10}} onPress={() => this.flipCard(showAnswer)}>
                 {!showAnswer ? 'Answer' : 'Question'}
           </TextButton>
-          <TextButton style={{padding: 10}} onPress={() => this.nextCard(cardNum, deck)}>
+          <TextButton style={{padding: 10}} onPress={() => this.incrementCount(cardNum, deck)}>
                 Correct
           </TextButton>
           <TextButton style={{padding: 10}} onPress={() => this.nextCard(cardNum, deck)}>
@@ -74,6 +78,9 @@ export default class Quiz extends Component {
       )
       :  (
         <View style={styles.container}>
+          <Text>
+            You scored {`${(count/deck.questions.length)*100}%`}
+          </Text>
           <TextButton style={{padding: 10}} onPress={() => this.backToHome(deck.title)}>
             Return to Deck List
           </TextButton>
