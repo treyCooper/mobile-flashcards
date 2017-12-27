@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import TextButton from './TextButton';
+import { saveDeckTitle } from '../utils/api';
+import { NavigationActions } from 'react-navigation';
+import SingleDeck from './SingleDeck';
 
 export default class NewDeck extends Component {
   state = {
     text: ''
 }
 
-addDeck = (title) => ({
+addDeck = () => {
 
-})
+ return saveDeckTitle(this.state.text)
+    .then(this.goToDeck(this.state.text))
+}
+
+goToDeck = (name) => {
+  const { navigate } = this.props.navigation;
+  return navigate('SingleDeck', { name })
+}
 
   render() {
     return (

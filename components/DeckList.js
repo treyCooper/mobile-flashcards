@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { fetchDecks  } from '../utils/api';
-import { NavigationActions } from 'react-navigation'
+import { NavigationActions } from 'react-navigation';
 import SingleDeck from './SingleDeck';
 export default class DeckList extends Component {
   state = {
@@ -14,7 +14,9 @@ export default class DeckList extends Component {
 
   componentDidMount() {
     fetchDecks()
-  .then((results) => this.setState(() => ({decks: results})))
+  .then((results) => {
+    console.log("results",  results)
+    this.setState(() => ({decks: results}))})
   }
 
   goToDeck = (name) => {
