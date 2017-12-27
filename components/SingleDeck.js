@@ -21,9 +21,18 @@ export default class SingleDeck extends Component {
     return navigate('Quiz', { name })
   }
 
+  handleNavBack = (qna) => {
+    const newDeck = this.state.deck;
+    newDeck.questions.push(qna)
+   this.setState(() => ({deck: newDeck}))
+  }
+
   addCard = (name) => {
     const { navigate } = this.props.navigation;
-    return navigate('AddCard', { name })
+    return navigate('AddCard', {
+      name,
+      navBack: this.handleNavBack
+    })
   }
 
   render () {

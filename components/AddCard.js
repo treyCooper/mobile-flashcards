@@ -21,12 +21,16 @@ export default class NewDeck extends Component {
       'answer': this.state.answer
     }
     addCardToDeck(title, qna)
-      this.goToDeck(this.state.title)
+      this.goToDeck(this.state.title, qna)
   }
 
-  goToDeck = (name) => {
-    const { navigate } = this.props.navigation;
-    return navigate('SingleDeck', { name })
+  goToDeck = (name, qna) => {
+    const { navigate, state } = this.props.navigation;
+    this.props.navigation.state.params.navBack(name)
+    const backAction = NavigationActions.back({
+      key: null
+    })
+    this.props.navigation.dispatch(backAction)
   }
   render() {
     const title = this.props.navigation.state.params.name
