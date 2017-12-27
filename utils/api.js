@@ -22,11 +22,16 @@ export function saveDeckTitle ( title, key ) {
 }))
 }
 
-export function addCardToDeck ({ cardInfo, key }) {
-  return AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({
-    [key]: cardInfo,
-  }))
+export function addCardToDeck (title, qna) {
+  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+    .then( data => {
+      decks = JSON.parse(data);
+      decks[title].questions.push(qna);
+      AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(decks));
+    }).done();
 }
+
+
 function formatDeckResults (results) {
   return results === null
     ? setDummyDecks()

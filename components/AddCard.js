@@ -1,17 +1,35 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput } from 'react-native';
 import TextButton from './TextButton';
+import { addCardToDeck } from '../utils/api';
+import { NavigationActions } from 'react-navigation';
+import SingleDeck from './SingleDeck';
 
 export default class NewDeck extends Component {
   state = {
-    title: 'What is the title of your new deck?',
     question: '',
-    answer: ''
+    answer: '',
+    title: ''
 }
 
+  componentDidMount() {
+    this.setState(() => ({title: this.props.navigation.state.params.name}))
+  }
+  addCard = (title) => {
+    const qna = {
+      'question': this.state.question,
+      'answer': this.state.answer
+    }
+    addCardToDeck(title, qna)
+      this.goToDeck(this.state.title)
+  }
 
+  goToDeck = (name) => {
+    const { navigate } = this.props.navigation;
+    return navigate('SingleDeck', { name })
+  }
   render() {
-    console.log(this.props.navigation.state.params.name)
+    const title = this.props.navigation.state.params.name
     return (
       <View style={styles.container}>
         <Text>
@@ -36,7 +54,7 @@ export default class NewDeck extends Component {
           placeholder={'Answer'}
         />
         </View>
-        <TextButton style={{padding: 10}} onPress={this.reset}>
+        <TextButton style={{padding: 10}} onPress={() => this.addCard(title)}>
             Add Card
           </TextButton>
       </View>
