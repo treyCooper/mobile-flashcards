@@ -28,7 +28,7 @@ export default class SingleDeck extends Component {
 
   render () {
     const { deck } = this.state;
-    return (
+    return deck.questions.length ? (
       <View style={styles.container}>
       <Text>
         {deck.title}
@@ -39,9 +39,26 @@ export default class SingleDeck extends Component {
       <TextButton style={{padding: 10}} onPress={() => this.addCard(deck.title)}>
             Add Card
       </TextButton>
-      <TextButton style={{padding: 10}} onPress={() => this.goToQuiz(deck.title)}>
+        <TextButton style={{padding: 10}} onPress={() => this.goToQuiz(deck.title)}>
             Start Quiz
+    </TextButton>
+
+      </View>
+    )
+    : (
+      <View style={styles.container}>
+      <Text>
+        {deck.title}
+      </Text>
+      <Text>
+        {`${deck.questions.length} ${deck.questions.length === 1 ? 'card' : 'cards'}`}
+      </Text>
+      <TextButton style={{padding: 10}} onPress={() => this.addCard(deck.title)}>
+            Add Card
       </TextButton>
+        <Text>
+          This deck does not have any cards. Please add cards to start a quiz on this subject.
+        </Text>
       </View>
     )
   }
