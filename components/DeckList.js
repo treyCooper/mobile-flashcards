@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, ScrollView, View, TouchableOpacity } from 'react-native';
 import { fetchDecks  } from '../utils/api';
 import { NavigationActions } from 'react-navigation';
 import SingleDeck from './SingleDeck';
@@ -29,11 +29,12 @@ export default class DeckList extends Component {
   render () {
     const { decks } = this.state;
     return (
-      Object.keys(decks).map((deck) => {
+      <ScrollView>
+      {Object.keys(decks).map((deck) => {
         return (
           <View style={styles.container} key={decks[deck].title}>
           <TouchableOpacity onPress={() => this.goToDeck(decks[deck].title)}>
-          <View style={styles.container}>
+          <View style={styles.card}>
             <Text>
             {decks[deck].title}
             </Text>
@@ -43,7 +44,8 @@ export default class DeckList extends Component {
         </View>
         </ TouchableOpacity>
         </View>)
-      })
+      })}
+    </ScrollView>
     )
   }
 
@@ -55,8 +57,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 40,
     width: 375,
     borderBottomWidth: 0.5
   },
+  card: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 150,
+    width: 375,
+    borderWidth: 0.5
+  }
 });
