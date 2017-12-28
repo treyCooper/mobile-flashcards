@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Animated } from 'react-native';
 import { getDeck  } from '../utils/api';
 import TextButton from './TextButton';
 import { NavigationActions } from 'react-navigation';
 
 export default class SingleDeck extends Component {
   state = {
-    deck: {questions: []}
+    deck: {questions: []},
+    opacity: new Animated.Value(0)
   }
   static navigationOptions = ({navigation}) => ({
     title: navigation.state.params.name,
   });
   componentDidMount() {
+    const { opacity } = this.state;
     getDeck(this.props.navigation.state.params.name)
-  .then((results) => this.setState(() => ({deck: results})))
-
+      .then((results) => this.setState(() => ({deck: results})))
+        .then(() => Animated.timing(opacity, { toValue: 1, duration: 1000})
+          .start()
+        )
   }
   goToQuiz = (name) => {
     const { navigate } = this.props.navigation;
@@ -36,9 +40,9 @@ export default class SingleDeck extends Component {
   }
 
   render () {
-    const { deck } = this.state;
+    const { deck, opacity } = this.state;
     return deck.questions.length ? (
-      <View style={styles.container}>
+      <Animated.View style={[styles.container, { opacity }]}>
       <Text>
         {deck.title}
       </Text>
@@ -52,10 +56,10 @@ export default class SingleDeck extends Component {
             Start Quiz
     </TextButton>
 
-      </View>
+      </Animated.View>
     )
     : (
-      <View style={styles.container}>
+      <Animated.View style={[styles.container, { opacity }]}>
       <Text>
         {deck.title}
       </Text>
@@ -68,7 +72,7 @@ export default class SingleDeck extends Component {
         <Text>
           This deck does not have any cards. Please add cards to start a quiz on this subject.
         </Text>
-      </View>
+      </Animated.View>
     )
   }
 }
