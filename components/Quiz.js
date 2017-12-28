@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { getDeck  } from '../utils/api';
 import TextButton from './TextButton';
 import { NavigationActions } from 'react-navigation';
-
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 export default class Quiz extends Component {
   state = {
     deck: {
@@ -33,6 +33,8 @@ export default class Quiz extends Component {
       this.setState(() => ({ cardNum: cardNum }) )
    } else {
     this.setState(() => ({ quizOver: true }) )
+    clearLocalNotification()
+    .then(setLocalNotification)
      }
   }
 

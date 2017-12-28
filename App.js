@@ -8,6 +8,7 @@ import Quiz from './components/Quiz';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { Constants } from 'expo';
+import { setLocalNotification } from './utils/helpers';
 
 const purple = '#292477'
 const gray = '#757575'
@@ -89,6 +90,9 @@ const MainNavigator = StackNavigator({
 
 
 export default class App extends React.Component {
+  componentDidMount(){
+    setLocalNotification()
+  }
   render() {
     return (
       <View style={styles.container}>
