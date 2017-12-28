@@ -17,6 +17,14 @@ addDeck = () => {
 }
 
 goToDeck = (name) => {
+
+  const resetAction = NavigationActions.reset({
+    index: 0,
+    actions: [
+      NavigationActions.navigate({ routeName: 'Home', params: { name }})
+    ]
+  })
+  this.props.navigation.dispatch(resetAction)
   const { navigate } = this.props.navigation;
   return navigate('SingleDeck', { name })
 }
