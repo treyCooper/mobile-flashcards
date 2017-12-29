@@ -9,10 +9,8 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Constants } from 'expo';
 import { setLocalNotification } from './utils/helpers';
+import { blue, white, gray } from './utils/colors'
 
-const purple = '#292477'
-const gray = '#757575'
-const white = '#fff'
 
 function UdaciStatusBar ({ backgroundColor, ...props }) {
   return (
@@ -39,10 +37,10 @@ const Tabs = TabNavigator({
   },
 }, {
   tabBarOptions: {
-    activeTintColor: Platform.OS === 'ios' ? purple : white,
+    activeTintColor: Platform.OS === 'ios' ? blue : white,
     style: {
       height: 56,
-      backgroundColor: Platform.OS === 'ios' ? white : purple,
+      backgroundColor: Platform.OS === 'ios' ? white : blue,
       shadowColor: 'rgba(0, 0, 0, 0.24)',
       shadowOffset: {
         width: 0,
@@ -63,7 +61,7 @@ const MainNavigator = StackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: purple,
+        backgroundColor: blue,
       }
     }
   },
@@ -72,7 +70,7 @@ const MainNavigator = StackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: purple,
+        backgroundColor: blue,
       }
     }
   },
@@ -81,7 +79,7 @@ const MainNavigator = StackNavigator({
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {
-        backgroundColor: purple,
+        backgroundColor: blue,
       }
     }
   }
@@ -97,7 +95,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <UdaciStatusBar backgroundColor={gray} barStyle='light-content' />
-        <MainNavigator />
+        <MainNavigator style={styles.title} />
       </View>
     );
   }

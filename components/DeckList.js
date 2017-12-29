@@ -15,7 +15,6 @@ export default class DeckList extends Component {
   componentDidMount() {
     fetchDecks()
   .then((results) => {
-    console.log("results",  results)
     this.setState(() => ({decks: results}))})
   }
 
@@ -35,10 +34,10 @@ export default class DeckList extends Component {
           <View style={styles.container} key={decks[deck].title}>
           <TouchableOpacity onPress={() => this.goToDeck(decks[deck].title)}>
           <View style={styles.card}>
-            <Text>
+            <Text style={styles.title}>
             {decks[deck].title}
             </Text>
-            <Text>
+            <Text style={{fontSize: 25}}>
               {`${decks[deck].questions.length} ${decks[deck].questions.length === 1 ? 'card' : 'cards'}`}
             </Text>
         </View>
@@ -67,6 +66,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: 150,
     width: 375,
-    borderWidth: 0.5
-  }
+    borderBottomWidth: 0.5
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold'
+  },
 });

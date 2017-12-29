@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Animated } from 'react-native';
 import { getDeck  } from '../utils/api';
 import TextButton from './TextButton';
+import { orange, white } from '../utils/colors'
 import { NavigationActions } from 'react-navigation';
 
 function CanStartQuiz (props) {
-  console.log('numCrda',  props)
   return props.numCards > 0 ? (
-   <TextButton style={{padding: 10}} onPress={() => props.quiz(props.deckTitle)}>
+   <TextButton style={{backgroundColor: orange}} onPress={() => props.quiz(props.deckTitle)}>
    Start Quiz
 </TextButton>
   ) : (<Text>
@@ -57,13 +57,13 @@ export default class SingleDeck extends Component {
     const { deck, opacity } = this.state;
     return (
       <Animated.View style={[styles.container, { opacity }]}>
-      <Text>
+      <Text style={styles.title}>
         {deck.title}
       </Text>
-      <Text>
+      <Text style={{fontSize: 25, marginBottom: 50}}>
         {`${deck.questions.length} ${deck.questions.length === 1 ? 'card' : 'cards'}`}
       </Text>
-      <TextButton style={{padding: 10}} onPress={() => this.addCard(deck.title)}>
+      <TextButton onPress={() => this.addCard(deck.title)}>
             Add Card
       </TextButton>
         <CanStartQuiz deckTitle={deck.title} quiz={this.goToQuiz} numCards={deck.questions.length} />
@@ -77,5 +77,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  title: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    padding: 15
   },
 });

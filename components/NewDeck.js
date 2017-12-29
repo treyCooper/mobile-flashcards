@@ -32,17 +32,17 @@ goToDeck = (name) => {
   render() {
     return (
       <View style={styles.container}>
-        <Text>
+        <Text style={styles.prompt}>
         What is the title of your new deck?
         </Text>
         <View>
         <TextInput
-          style={{height: 40, width: 300, borderColor: 'gray', borderWidth: 1}}
+          style={{height: 40, width: 300, borderColor: 'gray', borderRadius: 5, borderWidth: 1}}
           onChangeText={(text) => this.setState({text})}
           value={this.state.text}
           placeholder={'Placeholder Title'}
         />
-        <TextButton style={{padding: 10}} onPress={this.addDeck}>
+        <TextButton style={{width: 300}} onPress={this.addDeck}>
             Add Deck
           </TextButton>
         </View>
@@ -57,6 +57,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: 100
+    paddingTop: 100,
+  },
+  prompt: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    padding: 15,
+    width: 300
   },
 });

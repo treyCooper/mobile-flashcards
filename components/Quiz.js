@@ -3,7 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { getDeck  } from '../utils/api';
 import TextButton from './TextButton';
 import { NavigationActions } from 'react-navigation';
-import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers';
+import { orange, red , green } from '../utils/colors'
 export default class Quiz extends Component {
   state = {
     deck: {
@@ -63,16 +64,16 @@ export default class Quiz extends Component {
           {`${cardNum + 1}/${deck.questions.length}`}
         </Text>
         <View style={styles.container}>
-          <Text>
+          <Text style={styles.cardText}>
             {showAnswer ? deck.questions[cardNum].answer : deck.questions[cardNum].question}
           </Text>
-          <TextButton style={{padding: 10}} onPress={() => this.flipCard(showAnswer)}>
+          <TextButton onPress={() => this.flipCard(showAnswer)}>
                 {!showAnswer ? 'Answer' : 'Question'}
           </TextButton>
-          <TextButton style={{padding: 10}} onPress={() => this.incrementCount(cardNum, deck)}>
+          <TextButton style={{backgroundColor: green}} onPress={() => this.incrementCount(cardNum, deck)}>
                 Correct
           </TextButton>
-          <TextButton style={{padding: 10}} onPress={() => this.nextCard(cardNum, deck)}>
+          <TextButton style={{backgroundColor: red}} onPress={() => this.nextCard(cardNum, deck)}>
                 Incorrect
           </TextButton>
         </View>
@@ -80,13 +81,13 @@ export default class Quiz extends Component {
       )
       :  (
         <View style={styles.container}>
-          <Text>
+          <Text style={styles.cardText}>
             You scored {`${(count/deck.questions.length)*100}%`}
           </Text>
-          <TextButton style={{padding: 10}} onPress={() => this.backToHome(deck.title)}>
+          <TextButton onPress={() => this.backToHome(deck.title)}>
             Return to Deck List
           </TextButton>
-          <TextButton style={{padding: 10}} onPress={() => this.restartQuiz()}>
+          <TextButton style={{backgroundColor: orange}} onPress={() => this.restartQuiz()}>
             Restart Quiz
           </TextButton>
         </View>
@@ -100,12 +101,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    paddingTop: 120,
+    paddingTop: 50,
   },
   counter: {
-    paddingTop: 100,
-    paddingLeft: 50,
-
-
-  }
+    paddingTop: 20,
+    paddingLeft: 20,
+    fontSize: 20
+  },
+  cardText: {
+      fontSize: 30,
+      fontWeight: 'bold'
+    },
 });
