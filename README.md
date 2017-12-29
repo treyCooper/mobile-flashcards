@@ -7,17 +7,17 @@ yarn and expo as well as an android oriPhone are required to run this app. If yo
 ## Installation
 
 Clone this repository:
-
+```
  $ git clone https://github.com/treyCooper/mobile-flashcards
  $ cd mobile-flashcards
  $ yarn install
-
+```
 ## Launch
 
 Start the app:
-
+```
 $ yarn start
-
+```
 ## Warning
 
 This app has only been tested on iOS
