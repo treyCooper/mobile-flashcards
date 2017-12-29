@@ -7,13 +7,16 @@ import { NavigationActions } from 'react-navigation';
 
 function CanStartQuiz (props) {
   return props.numCards > 0 ? (
-   <TextButton style={{backgroundColor: orange}} onPress={() => props.quiz(props.deckTitle)}>
-   Start Quiz
-</TextButton>
-  ) : (<Text>
-  This deck does not have any cards. Please add cards to start a quiz on this subject.
-</Text>)
- }
+    <TextButton style={{backgroundColor: orange}} onPress={() => props.quiz(props.deckTitle)}>
+      Start Quiz
+    </TextButton>
+  ) :
+  (
+    <Text>
+      This deck does not have any cards. Please add cards to start a quiz on this subject.
+    </Text>
+  )
+}
 
 export default class SingleDeck extends Component {
   state = {
@@ -22,7 +25,7 @@ export default class SingleDeck extends Component {
   }
 
   static navigationOptions = ({navigation}) => ({
-    title: navigation.state.params.name,
+    title: navigation.state.params.name
   });
 
   componentDidMount() {
@@ -57,16 +60,16 @@ export default class SingleDeck extends Component {
     const { deck, opacity } = this.state;
     return (
       <Animated.View style={[styles.container, { opacity }]}>
-      <Text style={styles.title}>
-        {deck.title}
-      </Text>
-      <Text style={{fontSize: 25, marginBottom: 50}}>
-        {`${deck.questions.length} ${deck.questions.length === 1 ? 'card' : 'cards'}`}
-      </Text>
-      <TextButton onPress={() => this.addCard(deck.title)}>
-            Add Card
-      </TextButton>
-        <CanStartQuiz deckTitle={deck.title} quiz={this.goToQuiz} numCards={deck.questions.length} />
+        <Text style={styles.title}>
+          {deck.title}
+        </Text>
+        <Text style={{fontSize: 25, marginBottom: 50}}>
+          {`${deck.questions.length} ${deck.questions.length === 1 ? 'card' : 'cards'}`}
+        </Text>
+        <TextButton onPress={() => this.addCard(deck.title)}>
+          Add Card
+        </TextButton>
+          <CanStartQuiz deckTitle={deck.title} quiz={this.goToQuiz} numCards={deck.questions.length} />
       </Animated.View>
     )
   }

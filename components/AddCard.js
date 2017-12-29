@@ -36,31 +36,31 @@ export default class NewDeck extends Component {
     const title = this.props.navigation.state.params.name
     return (
       <View style={styles.container}>
-        <Text>
+        <Text style={{fontSize: 25}}>
           Question
         </Text>
         <View>
-        <TextInput
-          style={{height: 40, width: 300, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(question) => this.setState({question})}
-          value={this.state.question}
-          placeholder={'Question'}
-        />
+          <TextInput
+            style={styles.input}
+            onChangeText={(question) => this.setState({question})}
+            value={this.state.question}
+            placeholder={'Question'}
+          />
         </View>
-        <Text>
+        <Text style={{fontSize: 25}}>
           Answer
         </Text>
         <View>
-        <TextInput
-          style={{height: 40, width: 300, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(answer) => this.setState({answer})}
-          value={this.state.answer}
-          placeholder={'Answer'}
-        />
+          <TextInput
+            style={styles.input}
+            onChangeText={(answer) => this.setState({answer})}
+            value={this.state.answer}
+            placeholder={'Answer'}
+          />
         </View>
-        <TextButton style={{padding: 10}} onPress={() => this.addCard(title)}>
+        <TextButton onPress={() => this.addCard(title)}>
             Add Card
-          </TextButton>
+        </TextButton>
       </View>
     )
   }
@@ -71,6 +71,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: 100
+    paddingTop: 80
   },
+  input: {
+    height: 40,
+    width: 300,
+    borderColor: 'gray',
+    borderWidth: 1,
+    fontSize: 20
+  }
 });

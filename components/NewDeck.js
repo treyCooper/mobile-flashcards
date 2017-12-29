@@ -10,24 +10,22 @@ export default class NewDeck extends Component {
     text: ''
 }
 
-addDeck = () => {
+  addDeck = () => {
+  return saveDeckTitle(this.state.text)
+      .then(this.goToDeck(this.state.text))
+  }
 
- return saveDeckTitle(this.state.text)
-    .then(this.goToDeck(this.state.text))
-}
-
-goToDeck = (name) => {
-
-  const resetAction = NavigationActions.reset({
-    index: 0,
-    actions: [
-      NavigationActions.navigate({ routeName: 'Home', params: { name }})
-    ]
-  })
-  this.props.navigation.dispatch(resetAction)
-  const { navigate } = this.props.navigation;
-  return navigate('SingleDeck', { name })
-}
+  goToDeck = (name) => {
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Home', params: { name }})
+      ]
+    })
+    this.props.navigation.dispatch(resetAction)
+    const { navigate } = this.props.navigation;
+    return navigate('SingleDeck', { name })
+  }
 
   render() {
     return (
@@ -36,17 +34,16 @@ goToDeck = (name) => {
         What is the title of your new deck?
         </Text>
         <View>
-        <TextInput
-          style={{height: 40, width: 300, borderColor: 'gray', borderRadius: 5, borderWidth: 1}}
-          onChangeText={(text) => this.setState({text})}
-          value={this.state.text}
-          placeholder={'Placeholder Title'}
-        />
-        <TextButton style={{width: 300}} onPress={this.addDeck}>
-            Add Deck
+          <TextInput
+            style={{height: 40, width: 300, borderColor: 'gray', borderRadius: 5, borderWidth: 1}}
+            onChangeText={(text) => this.setState({text})}
+            value={this.state.text}
+            placeholder={'Placeholder Title'}
+          />
+          <TextButton style={{width: 300}} onPress={this.addDeck}>
+              Add Deck
           </TextButton>
         </View>
-
       </View>
     )
   }

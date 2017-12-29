@@ -32,22 +32,22 @@ export default class DeckList extends Component {
       {Object.keys(decks).map((deck) => {
         return (
           <View style={styles.container} key={decks[deck].title}>
-          <TouchableOpacity onPress={() => this.goToDeck(decks[deck].title)}>
-          <View style={styles.card}>
-            <Text style={styles.title}>
-            {decks[deck].title}
-            </Text>
-            <Text style={{fontSize: 25}}>
-              {`${decks[deck].questions.length} ${decks[deck].questions.length === 1 ? 'card' : 'cards'}`}
-            </Text>
-        </View>
-        </ TouchableOpacity>
-        </View>)
+            <TouchableOpacity onPress={() => this.goToDeck(decks[deck].title)}>
+            <View style={styles.card}>
+              <Text style={styles.title}>
+              {decks[deck].title}
+              </Text>
+              <Text style={{fontSize: 25}}>
+                {`${decks[deck].questions.length} ${decks[deck].questions.length === 1 ? 'card' : 'cards'}`}
+              </Text>
+            </View>
+            </TouchableOpacity>
+          </View>
+        )
       })}
     </ScrollView>
     )
   }
-
 }
 
 const styles = StyleSheet.create({

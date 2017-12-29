@@ -4,7 +4,8 @@ import { getDeck  } from '../utils/api';
 import TextButton from './TextButton';
 import { NavigationActions } from 'react-navigation';
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers';
-import { orange, red , green } from '../utils/colors'
+import { orange, red , green } from '../utils/colors';
+
 export default class Quiz extends Component {
   state = {
     deck: {
@@ -23,7 +24,7 @@ export default class Quiz extends Component {
 
   componentDidMount() {
     getDeck(this.props.navigation.state.params.name)
-  .then((results) => this.setState(() => ({deck: results})))
+      .then((results) => this.setState(() => ({deck: results})))
   }
 
   flipCard = (showAnswer) => this.setState(() => ({showAnswer: !showAnswer}))
@@ -42,9 +43,6 @@ export default class Quiz extends Component {
   backToHome = (name) => {
     const { navigate } = this.props.navigation;
     return navigate('Home')
-    // this.props.navigation.dispatch(NavigationActions.back({
-    //   key: 'DeckList'
-    // }))
   }
 
   restartQuiz = () => {
@@ -55,31 +53,33 @@ export default class Quiz extends Component {
     this.setState(() => ({ count: this.state.count + 1 }))
     this.nextCard(cardNum, deck)
   }
+
   render () {
     const { deck, showAnswer, cardNum, quizOver, count } = this.state;
     return !quizOver ?
-    (
-      <View style={{flex: 1}}>
-        <Text style={styles.counter}>
-          {`${cardNum + 1}/${deck.questions.length}`}
-        </Text>
-        <View style={styles.container}>
-          <Text style={styles.cardText}>
-            {showAnswer ? deck.questions[cardNum].answer : deck.questions[cardNum].question}
+      (
+        <View style={{flex: 1}}>
+          <Text style={styles.counter}>
+            {`${cardNum + 1}/${deck.questions.length}`}
           </Text>
-          <TextButton onPress={() => this.flipCard(showAnswer)}>
-                {!showAnswer ? 'Answer' : 'Question'}
-          </TextButton>
-          <TextButton style={{backgroundColor: green}} onPress={() => this.incrementCount(cardNum, deck)}>
+          <View style={styles.container}>
+            <Text style={styles.cardText}>
+              {showAnswer ? deck.questions[cardNum].answer : deck.questions[cardNum].question}
+            </Text>
+            <TextButton onPress={() => this.flipCard(showAnswer)}>
+                  {!showAnswer ? 'Answer' : 'Question'}
+            </TextButton>
+            <TextButton style={{backgroundColor: green}} onPress={() => this.incrementCount(cardNum, deck)}>
                 Correct
-          </TextButton>
-          <TextButton style={{backgroundColor: red}} onPress={() => this.nextCard(cardNum, deck)}>
+            </TextButton>
+            <TextButton style={{backgroundColor: red}} onPress={() => this.nextCard(cardNum, deck)}>
                 Incorrect
-          </TextButton>
+            </TextButton>
+          </View>
         </View>
-      </View>
       )
-      :  (
+      :
+      (
         <View style={styles.container}>
           <Text style={styles.cardText}>
             You scored {`${(count/deck.questions.length)*100}%`}
@@ -91,9 +91,7 @@ export default class Quiz extends Component {
             Restart Quiz
           </TextButton>
         </View>
-
     )
-
   }
 }
 

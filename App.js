@@ -9,7 +9,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Constants } from 'expo';
 import { setLocalNotification } from './utils/helpers';
-import { blue, white, gray } from './utils/colors'
+import { blue, white, gray } from './utils/colors';
 
 
 function UdaciStatusBar ({ backgroundColor, ...props }) {
