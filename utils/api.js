@@ -28,7 +28,7 @@ export function addCardToDeck (title, qna) {
       decks = JSON.parse(data);
       decks[title].questions.push(qna);
       AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(decks));
-    }).done();
+    })
 }
 
 

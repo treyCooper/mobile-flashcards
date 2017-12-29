@@ -3,6 +3,8 @@ import { StyleSheet, Text, ScrollView, View, TouchableOpacity } from 'react-nati
 import { fetchDecks  } from '../utils/api';
 import { NavigationActions } from 'react-navigation';
 import SingleDeck from './SingleDeck';
+import { white } from '../utils/colors';
+
 export default class DeckList extends Component {
   state = {
     decks: {}
@@ -14,8 +16,9 @@ export default class DeckList extends Component {
 
   componentDidMount() {
     fetchDecks()
-  .then((results) => {
-    this.setState(() => ({decks: results}))})
+      .then((results) => {
+        this.setState(() => ({decks: results}))
+      })
   }
 
   goToDeck = (name) => {
@@ -27,6 +30,7 @@ export default class DeckList extends Component {
 
   render () {
     const { decks } = this.state;
+    console.log("NAME", this.props.navigation)
     return (
       <ScrollView>
       {Object.keys(decks).map((deck) => {
@@ -53,7 +57,7 @@ export default class DeckList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: white,
     alignItems: 'center',
     justifyContent: 'center',
     width: 375,
@@ -61,7 +65,7 @@ const styles = StyleSheet.create({
   },
   card: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: white,
     alignItems: 'center',
     justifyContent: 'center',
     height: 150,
