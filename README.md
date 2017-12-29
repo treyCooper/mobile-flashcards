@@ -1,10 +1,10 @@
 mobile-flashcards is a mobile app that allows you to create and study virtual decks of flashcards.
 
-##Requirements
+## Requirements
 
 yarn and expo as well as an android oriPhone are required to run this app. If you do not have an android or iPhone, a simulator can be used instead.
 
-##Installation
+## Installation
 
 Clone this repository:
 
@@ -12,18 +12,18 @@ Clone this repository:
  $ cd mobile-flashcards
  $ yarn install
 
-##Launch
+## Launch
 
 Start the app:
 
 $ yarn start
 
-##Warning
+## Warning
 
 This app has only been tested on iOS
 
 
-##Create React Native App and Expo Info
+## Create React Native App and Expo Info
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
