@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, Platform, StatusBar } from 'react-native';
 import DeckList from './components/DeckList';
 import NewDeck from './components/NewDeck';
 import SingleDeck from './components/SingleDeck';
-import AddCard from './components/AddCard';
-import Quiz from './components/Quiz';
+// import AddCard from './components/AddCard';
+// import Quiz from './components/Quiz';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import { Constants } from 'expo';
@@ -64,24 +64,6 @@ const MainNavigator = StackNavigator({
         backgroundColor: blue,
       }
     }
-  },
-  Quiz: {
-    screen: Quiz,
-    navigationOptions: {
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: blue,
-      }
-    }
-  },
-  AddCard: {
-    screen: AddCard,
-    navigationOptions: {
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: blue,
-      }
-    }
   }
 })
 
@@ -89,7 +71,7 @@ const MainNavigator = StackNavigator({
 
 export default class App extends React.Component {
   componentDidMount(){
-    setLocalNotification()
+    // setLocalNotification()
   }
   render() {
     return (

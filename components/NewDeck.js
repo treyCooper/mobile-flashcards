@@ -14,7 +14,7 @@ export default class NewDeck extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.prompt}>
-          this.state.text
+          {this.state.text}
         </Text>
       </View>
     )
