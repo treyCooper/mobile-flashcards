@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Animated } from 'react-native';
-import { getDeck  } from '../utils/api';
+//import { getDeck  } from '../utils/api';
 import TextButton from './TextButton';
 import { orange, white } from '../utils/colors'
 import { NavigationActions } from 'react-navigation';
@@ -29,12 +29,12 @@ export default class SingleDeck extends Component {
   });
 
   componentDidMount() {
-    const { opacity } = this.state;
-    getDeck(this.props.navigation.state.params.name)
-      .then((results) => this.setState(() => ({deck: results})))
-        .then(() => Animated.timing(opacity, { toValue: 1, duration: 1000})
-          .start()
-        )
+    // const { opacity } = this.state;
+    // getDeck(this.props.navigation.state.params.name)
+    //   .then((results) => this.setState(() => ({deck: results})))
+    //     .then(() => Animated.timing(opacity, { toValue: 1, duration: 1000})
+    //       .start()
+    //     )
   }
 
   goToQuiz = (name) => {

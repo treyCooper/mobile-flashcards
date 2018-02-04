@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, ScrollView, View, TouchableOpacity } from 'react-native';
-import { fetchDecks  } from '../utils/api';
+//import { fetchDecks  } from '../utils/api';
 import { NavigationActions } from 'react-navigation';
 import SingleDeck from './SingleDeck';
 import { white } from '../utils/colors';
@@ -11,14 +11,14 @@ export default class DeckList extends Component {
   }
 
   static navigationOptions = {
-    title: 'Deck List',
+    title: 'Order History',
   };
 
   componentDidMount() {
-    fetchDecks()
-      .then((results) => {
-        this.setState(() => ({decks: results}))
-      })
+    // fetchDecks()
+    //   .then((results) => {
+    //     this.setState(() => ({decks: results}))
+    //   })
   }
 
   goToDeck = (name) => {
