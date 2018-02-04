@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, Platform, StatusBar } from 'react-native';
-import DeckList from './components/DeckList';
-import NewDeck from './components/NewDeck';
-import SingleDeck from './components/SingleDeck';
+import OrderList from './components/OrderList';
+import Cart from './components/Cart';
+import SingleOrder from './components/SingleOrder';
 // import AddCard from './components/AddCard';
 // import Quiz from './components/Quiz';
 import { TabNavigator, StackNavigator } from 'react-navigation';
-import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { Constants } from 'expo';
 import { setLocalNotification } from './utils/helpers';
 import { blue, white, gray } from './utils/colors';
@@ -21,18 +21,18 @@ function UdaciStatusBar ({ backgroundColor, ...props }) {
 }
 
 const Tabs = TabNavigator({
-  DeckList: {
-    screen: DeckList,
+  OrderList: {
+    screen: OrderList,
     navigationOptions: {
-      tabBarLabel: 'Deck List',
+      tabBarLabel: 'Order History',
       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={35} color={tintColor} />
     }
   },
-  NewDeck: {
-    screen: NewDeck,
+  Cart: {
+    screen: Cart,
     navigationOptions: {
-      tabBarLabel: 'New Deck',
-      tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />
+      tabBarLabel: 'My Cart',
+      tabBarIcon: ({ tintColor }) => <FontAwesome name='shopping-cart' size={30} color={tintColor} />
     }
   },
 }, {
@@ -56,8 +56,8 @@ const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs,
   },
-  SingleDeck: {
-    screen: SingleDeck,
+  SingleOrder: {
+    screen: SingleOrder,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {

@@ -1,15 +1,15 @@
 import { AsyncStorage } from 'react-native'
-export const ORDER_HISTORY_STORAGE_KEY = 'SmartMartMobile:myOrders'
+export const ORDER_HISTORY_STORAGE_KEY = 'SmartMartMobile:Orders'
 
-export function fetchDecks () {
+export function fetchOrders () {
   return AsyncStorage.getItem(ORDER_HISTORY_STORAGE_KEY)
-    .then(formatDeckResults)
+    .then(formatOrderResults)
 }
 
-export function getDeck (deck) {
+export function getOrder (order) {
   return AsyncStorage.getItem(ORDER_HISTORY_STORAGE_KEY)
-    .then(formatDeckResults)
-    .then(results => results[deck])
+    .then(formatOrderResults)
+    .then(results => results[order])
 }
 
 // export function saveDeckTitle ( title, key ) {
@@ -32,7 +32,7 @@ export function getDeck (deck) {
 // }
 
 
-function formatDeckResults (results) {
+function formatOrderResults (results) {
   return results === null
     ? setDummyOrders()
     : JSON.parse(results)
@@ -45,7 +45,7 @@ function setDummyOrders () {
       createdAt: 'Today',
       id: 6,
       lineItems:
-        {
+        [{
           id: 10,
           orderId: 6,
           product:
@@ -59,7 +59,7 @@ function setDummyOrders () {
           productId: 1,
           purchasePrice: 1,
           qty:3
-    },
+    }],
       status: "cart",
       subtotal: 3,
       userId: 2
@@ -68,7 +68,7 @@ function setDummyOrders () {
       createdAt: 'Last Monday',
       id: 5,
       lineItems:
-      {
+      [{
         id: 10,
         orderId: 6,
         product:
@@ -82,7 +82,7 @@ function setDummyOrders () {
         productId: 1,
         purchasePrice: 1,
         qty:3
-  },
+  }],
     status: "paid",
     subtotal: 3,
     userId: 2

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, ScrollView, View, TouchableOpacity } from 'react-native';
-//import { fetchDecks  } from '../utils/api';
+import { fetchOrders  } from '../utils/api';
 import { NavigationActions } from 'react-navigation';
-import SingleDeck from './SingleDeck';
+import SingleOrder from './SingleOrder';
 import { white } from '../utils/colors';
 
-export default class DeckList extends Component {
+export default class OrderList extends Component {
   state = {
-    decks: {}
+    orders: []
   }
 
   static navigationOptions = {
@@ -15,34 +15,33 @@ export default class DeckList extends Component {
   };
 
   componentDidMount() {
-    // fetchDecks()
-    //   .then((results) => {
-    //     this.setState(() => ({decks: results}))
-    //   })
+    fetchOrders()
+      .then((results) => {
+        this.setState(() => ({orders: results}))
+      })
   }
 
-  goToDeck = (name) => {
+  goToOrder = (name) => {
     const { navigate } = this.props.navigation;
-    return navigate('SingleDeck', { name })
+    return navigate('SingleOrder', { name })
   }
 
 
 
   render () {
-    const { decks } = this.state;
-    console.log("NAME", this.props.navigation)
+    const { orders } = this.state
     return (
       <ScrollView>
-      {Object.keys(decks).map((deck) => {
+      {orders.map((order, i) => {
         return (
-          <View style={styles.container} key={decks[deck].title}>
-            <TouchableOpacity onPress={() => this.goToDeck(decks[deck].title)}>
+          <View style={styles.container} key={order.id}>
+            <TouchableOpacity onPress={() => this.goToOrder(i)}>
             <View style={styles.card}>
               <Text style={styles.title}>
-              {decks[deck].title}
+              {order.createdAt}
               </Text>
               <Text style={{fontSize: 25}}>
-                {`${decks[deck].questions.length} ${decks[deck].questions.length === 1 ? 'card' : 'cards'}`}
+                {`$${order.subtotal}`}
               </Text>
             </View>
             </TouchableOpacity>

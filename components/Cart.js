@@ -5,7 +5,7 @@ import TextButton from './TextButton';
 import { NavigationActions } from 'react-navigation';
 //import SingleDeck from './SingleDeck';
 
-export default class NewDeck extends Component {
+export default class Cart extends Component {
   state = {
     text: 'You are not at Smart Mart'
 }
