@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, Animated } from 'react-native';
 import { getOrder  } from '../utils/api'
+import { dateReformat } from '../utils/helpers'
 import TextButton from './TextButton'
 import { orange, white } from '../utils/colors'
 import { NavigationActions } from 'react-navigation';
@@ -21,7 +22,10 @@ export default class SingleOrder extends Component {
   componentDidMount() {
     const { opacity } = this.state;
     getOrder(this.props.navigation.state.params.name)
-      .then((results) => this.setState(() => ({order: results})))
+      .then((results) => {
+        results["createdAt"] = dateReformat(results["createdAt"])
+        this.setState(() => ({order: results}))
+      })
         .then(() => Animated.timing(opacity, { toValue: 1, duration: 1000})
           .start()
         )
