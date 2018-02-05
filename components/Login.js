@@ -52,29 +52,31 @@ export default class Login extends React.Component {
 
 
 login = () => {
-  this.props.navigation.navigate('Tabs')
-  // fetch('http://2606:6000:6281:2b00:b082:a3da:c46f:208f:8080/auth/login', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Accept': 'application/json',
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify({
-  //     username: this.state.username,
-  //     password: this.state.password
-  //   })
-  // }).then((response) => response.json())
-  //   .then((res) => {
-  //     if (res.succes === true) {
-  //       console.log(res.user, "success")
-  //       // AsyncStorage.setItem('user', res.user)
-  //       // this.props.navigation.navigate('Order History')
-  //     }
-  //     else {
-  //       console.log('User not found')
-  //     }
-  //   })
-  //   .done()
+  //this.props.navigation.navigate('Tabs')
+  fetch('http://localhost:8080/auth/login', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      email: this.state.username,
+      password: this.state.password
+    })
+  }).then(result => result.json())
+    .then((res) => {
+      if (res.email) {
+        alert(`Hello ${res.first} ${res.last}`)
+        this.props.navigation.navigate('Tabs')
+        // AsyncStorage.setItem('user', res.user)
+        // this.props.navigation.navigate('Order History')
+      }
+      else {
+        console.log(res, 'resssss')
+        alert('User not found')
+      }
+    })
+    .done()
 
 
 }
