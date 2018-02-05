@@ -53,7 +53,7 @@ export default class Login extends React.Component {
 
 login = () => {
   //this.props.navigation.navigate('Tabs')
-  fetch('http://localhost:8080/auth/login', {
+  fetch('http://localhost:8080/auth/login-mobile', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -61,7 +61,6 @@ login = () => {
     },
     body: JSON.stringify({
       email: this.state.username,
-      password: this.state.password
     })
   }).then(result => result.json())
     .then((res) => {
