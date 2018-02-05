@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Platform, StatusBar } from 'react-native';
 import OrderList from './components/OrderList';
 import Cart from './components/Cart';
+import Login from './components/Login';
 import SingleOrder from './components/SingleOrder';
 // import AddCard from './components/AddCard';
 // import Quiz from './components/Quiz';
@@ -54,6 +55,9 @@ const Tabs = TabNavigator({
 
 const MainNavigator = StackNavigator({
   Home: {
+    screen: Login,
+  },
+  Tabs: {
     screen: Tabs,
   },
   SingleOrder: {
