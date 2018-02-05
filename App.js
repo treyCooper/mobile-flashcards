@@ -4,8 +4,6 @@ import OrderList from './components/OrderList';
 import Cart from './components/Cart';
 import Login from './components/Login';
 import SingleOrder from './components/SingleOrder';
-// import AddCard from './components/AddCard';
-// import Quiz from './components/Quiz';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { FontAwesome, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { Constants } from 'expo';

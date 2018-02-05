@@ -9,6 +9,7 @@ import {
   AsyncStorage
 } from 'react-native'
 import { StackNavigator } from 'react-navigation'
+import { login } from '../utils/api'
 
 export default class Login extends React.Component {
 
@@ -18,7 +19,7 @@ export default class Login extends React.Component {
       username: '',
       password: ''
     }
-    this.login = this.login.bind(this)
+    this.loginUser = this.loginUser.bind(this)
   }
 
   componentDidMount() {
@@ -42,7 +43,7 @@ export default class Login extends React.Component {
 
           <TextInput style={styles.textInput} placeholder='Password' onChangeText={ (password) => this.setState({password}) } underlineColorAndroid='transparent' secureTextEntry={true} />
 
-          <TouchableOpacity style={styles.btn} onPress={this.login}>
+          <TouchableOpacity style={styles.btn} onPress={this.loginUser}>
             <Text>Log in</Text>
           </TouchableOpacity>
         </View>
@@ -51,7 +52,7 @@ export default class Login extends React.Component {
   }
 
 
-login = () => {
+loginUser = () => {
   //this.props.navigation.navigate('Tabs')
   fetch('http://localhost:8080/auth/login-mobile', {
     method: 'POST',
@@ -61,14 +62,18 @@ login = () => {
     },
     body: JSON.stringify({
       email: this.state.username,
+      password: this.state.password
     })
   }).then(result => result.json())
     .then((res) => {
       if (res.email) {
+        //console.log(res, 'resssss')
         alert(`Hello ${res.first} ${res.last}`)
-        this.props.navigation.navigate('Tabs')
+         login(res)
+         .then(response => this.props.navigation.navigate('Tabs'))
+
         // AsyncStorage.setItem('user', res.user)
-        // this.props.navigation.navigate('Order History')
+
       }
       else {
         console.log(res, 'resssss')

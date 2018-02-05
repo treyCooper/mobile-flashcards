@@ -41,7 +41,6 @@ export default class SingleOrder extends Component {
 
   render () {
     const { order, opacity } = this.state;
-    console.log("singleOrder", order, 'name', this.props.navigation.state.params.name)
     return !order.createdAt ?
    ( <View>
       <Text>
