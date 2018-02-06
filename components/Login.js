@@ -13,6 +13,10 @@ import { login, ORDER_HISTORY_STORAGE_KEY } from '../utils/api'
 
 export default class Login extends React.Component {
 
+  static navigationOptions = {
+    header: null
+  }
+
   constructor(props){
     super(props)
     this.state = {
@@ -22,16 +26,16 @@ export default class Login extends React.Component {
     this.loginUser = this.loginUser.bind(this)
   }
 
-  componentDidMount() {
-    this._loadInitialState().done()
-  }
+  // componentDidMount() {
+  //   this._loadInitialState().done()
+  // }
 
-  _loadInitialState = async () => {
-    let value = await AsyncStorage.getItem(ORDER_HISTORY_STORAGE_KEY)
-    if (value !== null) {
-      this.props.navigation.navigate('Tabs')
-    }
-  }
+  // _loadInitialState = async () => {
+  //   let value = await AsyncStorage.getItem(ORDER_HISTORY_STORAGE_KEY)
+  //   if (value !== null) {
+  //     this.props.navigation.navigate('Tabs')
+  //   }
+  // }
 
   render() {
     return (
@@ -69,7 +73,7 @@ loginUser = () => {
       if (res.email) {
         alert(`Hello ${res.first} ${res.last}`)
          login(res)
-         .then(response => this.props.navigation.navigate('Tabs'))
+         .then(response => this._navigateTo('Tabs'))
          .catch(err => console.log(err))
 
         // AsyncStorage.setItem('user', res.user)
@@ -81,6 +85,13 @@ loginUser = () => {
     })
     .done()
 
+    _navigateTo = (routeName) => {
+      const actionToDispatch = NavigationActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName })]
+      })
+      this.props.navigation.dispatch(actionToDispatch)
+    }
 
 }
 }

@@ -5,6 +5,7 @@ import Cart from './components/Cart';
 import Login from './components/Login';
 import SingleOrder from './components/SingleOrder';
 import DisputeForm from './components/DisputeForm'
+import Splash from './components/Splash'
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { FontAwesome, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { Constants } from 'expo';
@@ -54,7 +55,10 @@ const Tabs = TabNavigator({
 
 const MainNavigator = StackNavigator({
   Home: {
-    screen: Login,
+    screen: Splash,
+  },
+  Login: {
+    screen: Login
   },
   Tabs: {
     screen: Tabs,
@@ -82,9 +86,7 @@ const MainNavigator = StackNavigator({
 
 
 export default class App extends React.Component {
-  componentDidMount(){
-    // setLocalNotification()
-  }
+
   render() {
     return (
       <View style={styles.container}>
