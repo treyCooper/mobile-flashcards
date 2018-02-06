@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: blue,
+    backgroundColor: white,
     paddingLeft: 40,
     paddingRight: 40
   },
@@ -118,12 +118,17 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     padding: 16,
     marginBottom: 20,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: gray
   },
   btn: {
     alignSelf: 'stretch',
-    backgroundColor: '#01c853',
+    backgroundColor: blue,
     padding: 20,
     alignItems: 'center',
+  },
+  text: {
+    color: white
   }
 })
