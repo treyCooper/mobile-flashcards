@@ -34,11 +34,11 @@ export default class Cart extends Component {
   _loadInitialState = async () => {
     let value = await AsyncStorage.getItem(ORDER_HISTORY_STORAGE_KEY)
     setTimeout(() => {
-    if (value !== null) {
+    if (value === null) {
       this._navigateTo('Tabs')
     }
     else {
-      this._navigateTo('Login')
+      this._navigateTo('AuthTabs')
     }
   }, 2500)
   }
