@@ -14,7 +14,10 @@ export default class SingleOrder extends Component {
     order: {},
     opacity: new Animated.Value(0)
   }
-
+  constructor(props){
+    super(props)
+    this.goToDisputeForm = this.goToDisputeForm.bind(this)
+  }
   // static navigationOptions = ({navigation}) => ({
   //   title: navigation.state.params.name
   // });
@@ -31,10 +34,10 @@ export default class SingleOrder extends Component {
         )
   }
 
-  // goToQuiz = (name) => {
-  //   const { navigate } = this.props.navigation;
-  //   return navigate('Quiz', { name })
-  // }
+   goToDisputeForm = (order) => {
+     const { navigate } = this.props.navigation;
+     return navigate('DisputeForm', {order})
+   }
 
   // handleNavBack = (qna) => {
   //   const newDeck = this.state.deck;
@@ -90,7 +93,7 @@ export default class SingleOrder extends Component {
           {`$${order.subtotal}`}
         </Text>
         <TextButton
-        // onPress={() => this.addCard(deck.title)}
+        onPress={() => this.goToDisputeForm(order)}
         >
           Dispute
         </TextButton>

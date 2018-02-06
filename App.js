@@ -4,6 +4,7 @@ import OrderList from './components/OrderList';
 import Cart from './components/Cart';
 import Login from './components/Login';
 import SingleOrder from './components/SingleOrder';
+import DisputeForm from './components/DisputeForm'
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { FontAwesome, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import { Constants } from 'expo';
@@ -60,6 +61,15 @@ const MainNavigator = StackNavigator({
   },
   SingleOrder: {
     screen: SingleOrder,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: blue,
+      }
+    }
+  },
+  DisputeForm: {
+    screen: DisputeForm,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {

@@ -9,7 +9,7 @@ import {
   AsyncStorage
 } from 'react-native'
 import { StackNavigator } from 'react-navigation'
-import { login } from '../utils/api'
+import { login, ORDER_HISTORY_STORAGE_KEY } from '../utils/api'
 
 export default class Login extends React.Component {
 
@@ -27,7 +27,7 @@ export default class Login extends React.Component {
   }
 
   _loadInitialState = async () => {
-    let value = await AsyncStorage.getItem('user')
+    let value = await AsyncStorage.getItem(ORDER_HISTORY_STORAGE_KEY)
     if (value !== null) {
       this.props.navigation.navigate('Tabs')
     }
@@ -67,16 +67,15 @@ loginUser = () => {
   }).then(result => result.json())
     .then((res) => {
       if (res.email) {
-        //console.log(res, 'resssss')
         alert(`Hello ${res.first} ${res.last}`)
          login(res)
          .then(response => this.props.navigation.navigate('Tabs'))
+         .catch(err => console.log(err))
 
         // AsyncStorage.setItem('user', res.user)
 
       }
       else {
-        console.log(res, 'resssss')
         alert('User not found')
       }
     })

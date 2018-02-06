@@ -18,11 +18,10 @@ export default class OrderList extends Component {
   componentDidMount() {
     fetchOrders()
       .then((results) => {
-        //let resultsJs = JSON.parse(results)
           results.forEach(order => order["createdAt"] = dateReformat(order["createdAt"]))
-           console.log('ordersss', results)
         this.setState(() => ({orders: results}))
       })
+      .catch(err => console.log(err))
   }
 
   goToOrder = (name) => {
